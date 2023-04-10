@@ -59,7 +59,7 @@ public class MoveWASD : MonoBehaviour
         }
 
         // if we're on the ground and the Jump button is pressed, set the vertical velocity to equal the jump speed
-        if (onGround && Input.GetButtonDown("Jump"))
+        if (onGround && Input.GetKey(KeyCode.W))
         {
             v.y = jumpSpeed;
         }
@@ -123,5 +123,4 @@ public class MoveWASD : MonoBehaviour
         Gizmos.DrawWireCube(centre, size);
 
     }
-
 }

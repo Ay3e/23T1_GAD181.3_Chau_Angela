@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class MoveArrowKeys : MonoBehaviour
 {
-// require that the object has a Rigidbody2D and an Animator
+    // require that the object has a Rigidbody2D and an Animator
 
     public float walkSpeed = 5f;
     public float jumpSpeed = 5f;
@@ -59,7 +59,7 @@ public class MoveArrowKeys : MonoBehaviour
         }
 
         // if we're on the ground and the Jump button is pressed, set the vertical velocity to equal the jump speed
-        if (onGround && Input.GetButtonDown("Jump"))
+        if (onGround && Input.GetKey(KeyCode.UpArrow))
         {
             v.y = jumpSpeed;
         }
@@ -123,5 +123,4 @@ public class MoveArrowKeys : MonoBehaviour
         Gizmos.DrawWireCube(centre, size);
 
     }
-
 }
