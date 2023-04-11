@@ -4,19 +4,37 @@ using UnityEngine;
 
 public class GetKey : MonoBehaviour
 {
+    private bool isFollowing;
 
-    public static bool isKeyCollected;
+    public float followSpeed;
 
-    private void Start()
+    public Transform followTargetP1;
+    //public Transform followTargetP2;
+
+    private void Update()
     {
-        isKeyCollected = false;
+        if (isFollowing)
+        {
+            transform.position = Vector3.Lerp(transform.position, followTargetP1.position, followSpeed * Time.deltaTime);
+            //transform.position = Vector3.Lerp(transform.position, followTargetP2.position, followSpeed * Time.deltaTime);
+        }
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.gameObject.tag == "Player")
+        if(other.tag == "Player")
         {
-            isKeyCollected = true;
+            if (!isFollowing)
+            {
+                MoveWASD thePlayerOne = FindObjectOfType<MoveWASD>();
+                //MoveArrowKeys thePlayerTwo = FindObjectOfType<MoveArrowKeys>();
+
+                followTargetP1 = thePlayerOne.keyFollowPointOne;
+                //followTargetP2 = thePlayerTwo.KeyFollowPointTwo;
+
+                isFollowing = true;
+                thePlayerOne.followingKey = this;
+            }
         }
     }
 }

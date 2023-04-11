@@ -18,6 +18,8 @@ public class MoveArrowKeys : MonoBehaviour
     public Rect groundRect = new Rect(-0.32f, -0.72f, 0.56f, 0.1f);
     public LayerMask groundLayerMask = -1;
 
+    public Transform KeyFollowPointTwo;
+
     private Animator animator;
 
     void Awake()
@@ -46,14 +48,7 @@ public class MoveArrowKeys : MonoBehaviour
         // if we're on the ground or if in-air walking is allowed, set the horizontal velocity to match the "Horizontal" input axis (scaled by walkSpeed)
         if (onGround || walkOnAir)
         {
-            if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                v.x = walkSpeed * Input.GetAxis("Horizontal");
-            }
-            if (Input.GetKey(KeyCode.RightArrow))
-            {
-                v.x = walkSpeed * Input.GetAxis("Horizontal");
-            }
+            v.x = walkSpeed * Input.GetAxis("HorizontalArrows");
             // activate the animation if we are moving
             animator.SetBool("Moving", v.x != 0);
         }

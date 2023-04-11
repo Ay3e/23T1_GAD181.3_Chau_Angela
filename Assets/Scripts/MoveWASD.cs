@@ -18,6 +18,10 @@ public class MoveWASD : MonoBehaviour
     public Rect groundRect = new Rect(-0.32f, -0.72f, 0.56f, 0.1f);
     public LayerMask groundLayerMask = -1;
 
+    public Transform keyFollowPointOne;
+
+    public GetKey followingKey;
+
     private Animator animator;
 
     void Awake()
@@ -46,15 +50,7 @@ public class MoveWASD : MonoBehaviour
         // if we're on the ground or if in-air walking is allowed, set the horizontal velocity to match the "Horizontal" input axis (scaled by walkSpeed)
         if (onGround || walkOnAir)
         {
-            if (Input.GetKey(KeyCode.A))
-            {
-                v.x = walkSpeed * Input.GetAxis("Horizontal");
-            }
-            if (Input.GetKey(KeyCode.D))
-            {
-                v.x = walkSpeed * Input.GetAxis("Horizontal");
-            }
-            // activate the animation if we are moving
+            v.x = walkSpeed * Input.GetAxis("HorizontalWASD");
             animator.SetBool("Moving", v.x != 0);
         }
 
