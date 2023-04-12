@@ -18,7 +18,9 @@ public class MoveArrowKeys : MonoBehaviour
     public Rect groundRect = new Rect(-0.32f, -0.72f, 0.56f, 0.1f);
     public LayerMask groundLayerMask = -1;
 
-    public Transform KeyFollowPointTwo;
+    public Transform keyFollowPointTwo;
+
+    public GetKeyP2 followingKey;
 
     private Animator animator;
 

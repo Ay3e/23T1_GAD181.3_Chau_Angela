@@ -2,21 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GetKey : MonoBehaviour
+public class GetKeyP1 : MonoBehaviour
 {
-    private bool isFollowing;
+    private bool isFollowingP1;
 
     public float followSpeed;
 
     public Transform followTargetP1;
-    //public Transform followTargetP2;
 
     private void Update()
     {
-        if (isFollowing)
+        if (isFollowingP1)
         {
             transform.position = Vector3.Lerp(transform.position, followTargetP1.position, followSpeed * Time.deltaTime);
-            //transform.position = Vector3.Lerp(transform.position, followTargetP2.position, followSpeed * Time.deltaTime);
         }
     }
 
@@ -24,15 +22,11 @@ public class GetKey : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            if (!isFollowing)
+            if (!isFollowingP1)
             {
                 MoveWASD thePlayerOne = FindObjectOfType<MoveWASD>();
-                //MoveArrowKeys thePlayerTwo = FindObjectOfType<MoveArrowKeys>();
-
                 followTargetP1 = thePlayerOne.keyFollowPointOne;
-                //followTargetP2 = thePlayerTwo.KeyFollowPointTwo;
-
-                isFollowing = true;
+                isFollowingP1 = true;
                 thePlayerOne.followingKey = this;
             }
         }

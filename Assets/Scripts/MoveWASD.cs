@@ -20,7 +20,7 @@ public class MoveWASD : MonoBehaviour
 
     public Transform keyFollowPointOne;
 
-    public GetKey followingKey;
+    public GetKeyP1 followingKey;
 
     private Animator animator;
 
