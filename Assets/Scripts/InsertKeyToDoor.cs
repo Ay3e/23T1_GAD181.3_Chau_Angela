@@ -8,15 +8,20 @@ public class InsertKeyToDoor : MonoBehaviour
 
     private MoveWASD thePlayerOne;
 
-    // The Door Game objects
     [SerializeField] private GameObject Closed;
     [SerializeField] private GameObject Opened;
 
-    public static bool doorOpen, waitingToOpen;
+    public bool doorOpen, waitingToOpen;
+    private bool isPlayerOnTrigger;
+    private bool playerOneIn, playerTwoIn;
+
+    [SerializeField] private GameObject playerOne;
+    [SerializeField] private GameObject playerTwo;
+
+    public static int currentSceneNumber = 0;
 
     private void Start()
     {
-        //Have the door be closed once scene starts
         Closed.SetActive(true);
         Opened.SetActive(false);
     }
@@ -26,40 +31,54 @@ public class InsertKeyToDoor : MonoBehaviour
         thePlayerOne = FindObjectOfType<MoveWASD>();
         if (waitingToOpen)
         {
-            //When the key position is in the center of the door, unlock it
-            if(Vector3.Distance(thePlayerOne.followingKey.transform.position, transform.position) < 0.1f)
+            if (Vector3.Distance(thePlayerOne.followingKey.transform.position, transform.position) < 0.1f)
             {
                 waitingToOpen = false;
 
                 doorOpen = true;
 
-                //Have the door be opened
                 Opened.SetActive(true);
                 Closed.SetActive(false);
-                
-                //Destroy the key
-                thePlayerOne.followingKey.gameObject.SetActive(false);
-                thePlayerOne.followingKey = null;
 
-                //Change the scene when
-                if (doorOpen)
-                {
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-                }
+                thePlayerOne.followingKey.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+                //thePlayerOne.followingKey = null;
             }
+        }
+        if (Input.GetKeyDown(KeyCode.DownArrow) && isPlayerOnTrigger == true && waitingToOpen == false)
+        {
+            playerTwo.GetComponent<SpriteRenderer>().enabled = false;
+            playerTwoIn = true;
+        }
+        if (Input.GetKeyDown(KeyCode.S) && isPlayerOnTrigger == true && waitingToOpen == false)
+        {
+            playerOne.GetComponent<SpriteRenderer>().enabled = false;
+            playerOneIn = true;
+        }
+        if (playerTwoIn == true && playerOneIn == true)
+        {
+            SceneManager.LoadScene(currentSceneNumber++);
+        }
+        if (playerOneIn == true && playerTwoIn == true)
+        {
+            SceneManager.LoadScene(currentSceneNumber++);
         }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        //When player is in range of door and the player has the key, move the key to the door
-        if(other.tag == "Player")
+        if (other.tag == "Player")
         {
-            if(thePlayerOne.followingKey != null)
-            {
-                thePlayerOne.followingKey.followTargetP1 = transform;
-                waitingToOpen = true;
-            }
+            //if(thePlayerOne.followingKey != null)
+            //{
+            thePlayerOne.followingKey.followTargetP1 = transform;
+            waitingToOpen = true;
+            //}
+            isPlayerOnTrigger = true;
         }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        isPlayerOnTrigger = false;
     }
 }
