@@ -315,7 +315,7 @@ GameObject:
   - component: {fileID: 195801045}
   - component: {fileID: 195801047}
   - component: {fileID: 195801046}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -426,7 +426,7 @@ GameObject:
   - component: {fileID: 260102749}
   - component: {fileID: 260102751}
   - component: {fileID: 260102750}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -663,8 +663,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 423067184}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.0825, y: -3.95, z: 0.17462777}
-  m_LocalScale: {x: 44.5417, y: 2.8003125, z: 1}
+  m_LocalPosition: {x: 2.0825, y: -5.9975, z: 0.17462777}
+  m_LocalScale: {x: 44.5417, y: 6.89521, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 991213884}
@@ -1263,7 +1263,7 @@ GameObject:
   - component: {fileID: 1249405307}
   - component: {fileID: 1249405309}
   - component: {fileID: 1249405308}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1294,7 +1294,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1249405306}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: e2e2a06deee157340a4ee1e4a8a24889, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0

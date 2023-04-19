@@ -47,7 +47,7 @@ public class InsertKeyToDoor : MonoBehaviour
             }
         }
 
-        //When P2 presses down the arrow key, and they are in the trigger
+        //When P2 presses down the arrow key, and they are in the trigger and the door is also opened then ...
         if (Input.GetKeyDown(KeyCode.DownArrow) && isPlayerOnTrigger == true && waitingToOpen == false)
         {
             playerTwo.GetComponent<SpriteRenderer>().enabled = false;
@@ -61,6 +61,7 @@ public class InsertKeyToDoor : MonoBehaviour
 
             playerTwoIn = true;
         }
+        //When P1 presses down the S key, and they are in the trigger and the door is also opened then ...
         if (Input.GetKeyDown(KeyCode.S) && isPlayerOnTrigger == true && waitingToOpen == false)
         {
             playerOne.GetComponent<SpriteRenderer>().enabled = false;
@@ -72,6 +73,7 @@ public class InsertKeyToDoor : MonoBehaviour
 
             playerOneIn = true;
         }
+        // Check if both players have used the door, if so then change to the next level
         if (playerTwoIn == true && playerOneIn == true)
         {
             SceneManager.LoadScene(currentSceneNumber++);
@@ -82,10 +84,13 @@ public class InsertKeyToDoor : MonoBehaviour
         }
     }
 
+
+    //When any player collides with the door and the player has the key then...
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")
         {
+            //
             thePlayerOne.followingKey.followTargetP1 = transform;
             waitingToOpen = true;
 
