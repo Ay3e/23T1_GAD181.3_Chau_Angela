@@ -32,6 +32,8 @@ public class InsertKeyToDoor : MonoBehaviour
     private void Update()
     {
         thePlayerOne = FindObjectOfType<MoveWASD>();
+
+        //If key is at door position open the door and remove the key from view
         if (waitingToOpen)
         {
             if (Vector3.Distance(thePlayerOne.followingKey.transform.position, transform.position) < 0.1f)
@@ -47,6 +49,8 @@ public class InsertKeyToDoor : MonoBehaviour
                 //thePlayerOne.followingKey = null;
             }
         }
+
+        //When P2 presses down the arrow key, and they are in the trigger
         if (Input.GetKeyDown(KeyCode.DownArrow) && isPlayerOnTrigger == true && waitingToOpen == false)
         {
             playerTwo.GetComponent<SpriteRenderer>().enabled = false;
@@ -79,11 +83,9 @@ public class InsertKeyToDoor : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            //if(thePlayerOne.followingKey != null)
-            //{
             thePlayerOne.followingKey.followTargetP1 = transform;
             waitingToOpen = true;
-            //}
+
             isPlayerOnTrigger = true;
         }
     }
