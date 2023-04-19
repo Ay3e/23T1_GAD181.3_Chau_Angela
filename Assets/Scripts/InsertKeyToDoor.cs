@@ -18,9 +18,6 @@ public class InsertKeyToDoor : MonoBehaviour
     [SerializeField] private GameObject playerOne;
     [SerializeField] private GameObject playerTwo;
 
-    [SerializeField] private GameObject playerOneBoxCollider;
-    [SerializeField] private GameObject playerTwoBoxCollider;
-
     public static int currentSceneNumber = 0;
 
     private void Start()
@@ -54,6 +51,9 @@ public class InsertKeyToDoor : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.DownArrow) && isPlayerOnTrigger == true && waitingToOpen == false)
         {
             playerTwo.GetComponent<SpriteRenderer>().enabled = false;
+            isPlayerOnTrigger = false;
+
+            playerTwo.GetComponent<MoveArrowKeys>().enabled = false;
             //playerTwo.GetComponent<CapsuleCollider2D>().enabled = false;
             //playerTwoBoxCollider.SetActive(false);
 
@@ -64,6 +64,9 @@ public class InsertKeyToDoor : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.S) && isPlayerOnTrigger == true && waitingToOpen == false)
         {
             playerOne.GetComponent<SpriteRenderer>().enabled = false;
+            isPlayerOnTrigger = false;
+
+            playerOne.GetComponent<MoveWASD>().enabled = false;
             //playerOne.GetComponent<CapsuleCollider2D>().enabled = false;
             //playerOneBoxCollider.SetActive(false);
 
