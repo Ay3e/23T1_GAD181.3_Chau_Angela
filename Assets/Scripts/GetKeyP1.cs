@@ -10,6 +10,8 @@ public class GetKeyP1 : MonoBehaviour
 
     public Transform followTargetP1;
 
+    [SerializeField] private AudioSource getKeySoundEffect;
+
     private void Update()
     {
         if (isFollowingP1)
@@ -24,6 +26,7 @@ public class GetKeyP1 : MonoBehaviour
         {
             if (!isFollowingP1)
             {
+                getKeySoundEffect.Play();
                 MoveWASD thePlayerOne = FindObjectOfType<MoveWASD>();
                 followTargetP1 = thePlayerOne.keyFollowPointOne;
                 isFollowingP1 = true;

@@ -20,9 +20,9 @@ public class MoveArrowKeys : MonoBehaviour
 
     public Transform keyFollowPointTwo;
 
-    public GetKeyP2 followingKey;
-
     private Animator animator;
+
+    [SerializeField] private AudioSource jumpSoundEffect;
 
     void Awake()
     {
@@ -59,6 +59,7 @@ public class MoveArrowKeys : MonoBehaviour
         if (onGround && Input.GetKey(KeyCode.UpArrow))
         {
             v.y = jumpSpeed;
+            jumpSoundEffect.Play();
         }
 
         // set the velocity to the new value

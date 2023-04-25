@@ -24,6 +24,8 @@ public class MoveWASD : MonoBehaviour
 
     private Animator animator;
 
+    [SerializeField] private AudioSource jumpSoundEffect;
+
     void Awake()
     {
         // record a reference to the rigidbody component to use later
@@ -58,6 +60,7 @@ public class MoveWASD : MonoBehaviour
         if (onGround && Input.GetKey(KeyCode.W))
         {
             v.y = jumpSpeed;
+            jumpSoundEffect.Play();
         }
 
         // set the velocity to the new value
