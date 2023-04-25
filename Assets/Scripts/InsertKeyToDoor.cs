@@ -12,13 +12,11 @@ public class InsertKeyToDoor : MonoBehaviour
     [SerializeField] private GameObject Opened;
 
     public bool doorOpen, waitingToOpen;
-    private bool isPlayerOnTrigger;
-    private bool playerOneIn, playerTwoIn;
+    private bool isPlayerOneOnTrigger;
+    private bool isPlayerTwoOnTrigger;
 
     [SerializeField] private GameObject playerOne;
     [SerializeField] private GameObject playerTwo;
-
-    public static int currentSceneNumber = 0;
 
     private void Start()
     {
@@ -46,41 +44,9 @@ public class InsertKeyToDoor : MonoBehaviour
                 //thePlayerOne.followingKey = null;
             }
         }
-
-        //When P2 presses down the arrow key, and they are in the trigger and the door is also opened then ...
-        if (Input.GetKeyDown(KeyCode.DownArrow) && isPlayerOnTrigger == true && waitingToOpen == false)
+        if (isPlayerOneOnTrigger == true && isPlayerTwoOnTrigger == true && waitingToOpen == false)
         {
-            playerTwo.GetComponent<SpriteRenderer>().enabled = false;
-            isPlayerOnTrigger = false;
-
-            playerTwo.GetComponent<MoveArrowKeys>().enabled = false;
-            //playerTwo.GetComponent<CapsuleCollider2D>().enabled = false;
-            //playerTwoBoxCollider.SetActive(false);
-
-            //CameraFollow.FindObjectsOfTypeAll 
-
-            playerTwoIn = true;
-        }
-        //When P1 presses down the S key, and they are in the trigger and the door is also opened then ...
-        if (Input.GetKeyDown(KeyCode.S) && isPlayerOnTrigger == true && waitingToOpen == false)
-        {
-            playerOne.GetComponent<SpriteRenderer>().enabled = false;
-            isPlayerOnTrigger = false;
-
-            playerOne.GetComponent<MoveWASD>().enabled = false;
-            //playerOne.GetComponent<CapsuleCollider2D>().enabled = false;
-            //playerOneBoxCollider.SetActive(false);
-
-            playerOneIn = true;
-        }
-        // Check if both players have used the door, if so then change to the next level
-        if (playerTwoIn == true && playerOneIn == true)
-        {
-            SceneManager.LoadScene(currentSceneNumber++);
-        }
-        if (playerOneIn == true && playerTwoIn == true)
-        {
-            SceneManager.LoadScene(currentSceneNumber++);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 
@@ -94,12 +60,14 @@ public class InsertKeyToDoor : MonoBehaviour
             thePlayerOne.followingKey.followTargetP1 = transform;
             waitingToOpen = true;
 
-            isPlayerOnTrigger = true;
+            isPlayerOneOnTrigger = true;
+            isPlayerTwoOnTrigger = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        isPlayerOnTrigger = false;
+        isPlayerOneOnTrigger = false;
+        isPlayerTwoOnTrigger = false;
     }
 }

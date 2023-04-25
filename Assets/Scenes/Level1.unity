@@ -1308,6 +1308,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99d31c0f7a09f044baf9b5ba25f15e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &1802374607 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4773475981044872508, guid: 17a7b6bf70604734bb07cf5b96e6a113, type: 3}
+  m_PrefabInstance: {fileID: 7936932223390896867}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1852326179
 GameObject:
   m_ObjectHideFlags: 0
@@ -1970,6 +1975,10 @@ PrefabInstance:
       propertyPath: followTargetP1
       value: 
       objectReference: {fileID: 1354110742}
+    - target: {fileID: 8301312942361483513, guid: 17a7b6bf70604734bb07cf5b96e6a113, type: 3}
+      propertyPath: getKeySoundEffect
+      value: 
+      objectReference: {fileID: 1802374607}
     m_RemovedComponents:
     - {fileID: 1240261445411654769, guid: 17a7b6bf70604734bb07cf5b96e6a113, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 17a7b6bf70604734bb07cf5b96e6a113, type: 3}

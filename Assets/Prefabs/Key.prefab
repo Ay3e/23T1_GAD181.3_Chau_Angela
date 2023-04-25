@@ -101,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followSpeed: 4
   followTargetP1: {fileID: 0}
+  getKeySoundEffect: {fileID: 4773475981044872508}
 --- !u!58 &7936932223530214892
 CircleCollider2D:
   m_ObjectHideFlags: 0
