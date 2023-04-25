@@ -18,6 +18,8 @@ public class InsertKeyToDoor : MonoBehaviour
     [SerializeField] private GameObject playerOne;
     [SerializeField] private GameObject playerTwo;
 
+    [SerializeField] private AudioSource openDoorSoundEffect;
+
     private void Start()
     {
         Closed.SetActive(true);
@@ -56,7 +58,7 @@ public class InsertKeyToDoor : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            //
+            openDoorSoundEffect.Play();
             thePlayerOne.followingKey.followTargetP1 = transform;
             waitingToOpen = true;
 
