@@ -20,7 +20,7 @@ public class InsertKeyToDoor : MonoBehaviour
 
     [SerializeField] private AudioSource openDoorSoundEffect;
     [SerializeField] private GameObject disappearPlatform;
-    private float delayChangeScene = 0.5f;
+    private float delayRemovePlatform = 0.5f;
     private float timeElapsed;
 
     private void Start()
@@ -53,7 +53,7 @@ public class InsertKeyToDoor : MonoBehaviour
         if (isPlayerOneOnTrigger == true && isPlayerTwoOnTrigger == true && waitingToOpen == false)
         {
             timeElapsed += Time.deltaTime;
-            if(timeElapsed > delayChangeScene)
+            if(timeElapsed > delayRemovePlatform)
             {
                 disappearPlatform.SetActive(false);
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
