@@ -19,6 +19,9 @@ public class InsertKeyToDoor : MonoBehaviour
     [SerializeField] private GameObject playerTwo;
 
     [SerializeField] private AudioSource openDoorSoundEffect;
+    [SerializeField] private GameObject disappearPlatform;
+    private float delayChangeScene = 0.5f;
+    private float timeElapsed;
 
     private void Start()
     {
@@ -38,6 +41,7 @@ public class InsertKeyToDoor : MonoBehaviour
                 waitingToOpen = false;
 
                 doorOpen = true;
+                openDoorSoundEffect.Play();
 
                 Opened.SetActive(true);
                 Closed.SetActive(false);
@@ -48,7 +52,12 @@ public class InsertKeyToDoor : MonoBehaviour
         }
         if (isPlayerOneOnTrigger == true && isPlayerTwoOnTrigger == true && waitingToOpen == false)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            timeElapsed += Time.deltaTime;
+            if(timeElapsed > delayChangeScene)
+            {
+                disappearPlatform.SetActive(false);
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
         }
     }
 
@@ -58,7 +67,6 @@ public class InsertKeyToDoor : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            openDoorSoundEffect.Play();
             thePlayerOne.followingKey.followTargetP1 = transform;
             waitingToOpen = true;
 
