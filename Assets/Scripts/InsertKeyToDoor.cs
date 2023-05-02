@@ -20,6 +20,7 @@ public class InsertKeyToDoor : MonoBehaviour
 
     [SerializeField] private AudioSource openDoorSoundEffect;
     [SerializeField] private GameObject disappearPlatform;
+    private int audioCount = 0;
     private float delayRemovePlatform = 0.5f;
     private float timeElapsed;
 
@@ -41,8 +42,11 @@ public class InsertKeyToDoor : MonoBehaviour
                 waitingToOpen = false;
 
                 doorOpen = true;
-                openDoorSoundEffect.Play();
-
+                audioCount++;
+                if (audioCount == 1)
+                {
+                    openDoorSoundEffect.Play();
+                }
                 Opened.SetActive(true);
                 Closed.SetActive(false);
 
